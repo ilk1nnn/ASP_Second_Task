@@ -10,14 +10,12 @@ namespace ASP_Second_Task.Controllers
     {
 
 
-        private HomeController _controller { get; set; }
-
         [HttpGet]
         public IActionResult Add()
         {
-            var vm = new PersonListViewModel
+            var vm = new PersonViewModel()
             {
-                Person = new Person()
+                Person = new Person(),
             };
             return View(vm);
         }
@@ -25,9 +23,9 @@ namespace ASP_Second_Task.Controllers
 
         [HttpPost]
 
-        public RedirectResult Add(PersonListViewModel viewModel)
+        public RedirectResult Add(PersonViewModel viewModel)
         {
-			viewModel.Persons.Add(viewModel.Person);
+            HomeController.persons.Add(viewModel.Person);
             return Redirect("/home/index");
         }
 
